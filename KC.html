@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kanabar Consultancy | Adv. Rakshit S. Kanabar</title>
+
+<style>
+/* ===================== RESET ===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Updated font stack */
+}
+
+/* ===================== GLOBAL ===================== */
+html {
+  scroll-behavior: smooth;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.fade-in.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+body {
+  background: #f8f9fa; /* Slightly lighter background */
+  color: #333; /* Slightly darker text for better contrast */
+  line-height: 1.7; /* Improved line height for readability */
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit; /* Inherit color by default */
+}
+
+h1, h2, h3 {
+  color: #222; /* Consistent heading color */
+  margin-bottom: 15px; /* Add some bottom margin to headings */
+}
+
+.btn {
+  padding: 12px 25px; /* Slightly more padding */
+  border-radius: 5px; /* Slightly more rounded corners */
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block;
+  transition: all 0.3s ease; /* Smooth transitions for buttons */
+  font-size: 16px; /* Consistent button font size */
+}
+
+.btn-primary {
+  background: #d4af37;
+  color: #000;
+  border: 1px solid #d4af37; /* Add border for consistency */
+}
+
+.btn-primary:hover {
+  background: #c09f2e; /* Darker gold on hover */
+  border-color: #c09f2e;
+  transform: translateY(-2px); /* Subtle lift effect */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn-outline {
+  border: 1px solid #d4af37;
+  color: #d4af37;
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: #d4af37; /* Fill with gold on hover */
+  color: #000; /* Black text on gold hover */
+  transform: translateY(-2px); /* Subtle lift effect */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+
+/* ===================== NAVBAR ===================== */
+header {
+  background: #fff;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+  border-bottom: 1px solid #eee; /* Subtle bottom border */
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.logo {
+  font-size: 24px; /* Slightly larger logo */
+  font-weight: 700;
+  color: #000;
+}
+
+.logo span {
+  color: #d4af37;
+}
+
+nav a {
+  margin-left: 25px; /* Increased spacing */
+  color: #555; /* Softer link color */
+  font-weight: 500;
+  transition: color 0.3s ease; /* Smooth color transition */
+}
+
+nav a:hover {
+  color: #d4af37; /* Gold on hover */
+}
+
+nav a.active {
+  color: #d4af37;
+  font-weight: 600; /* Bolder active link */
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 28px; /* Slightly larger icon */
+  cursor: pointer;
+  color: #333;
+}
+
+@media (max-width: 992px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  nav {
+    position: absolute;
+    top: 75px; /* Adjusted top position */
+    right: 20px;
+    background: #fff;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 8px; /* More rounded corners */
+    box-shadow: 0 10px 25px rgba(0,0,0,.15);
+    display: none;
+    border: 1px solid #eee; /* Subtle border */
+  }
+
+  nav.show {
+    display: flex;
+  }
+
+  nav a {
+    margin: 12px 0; /* Adjusted vertical margin */
+    text-align: center;
+  }
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: box-shadow 0.3s ease, background 0.3s ease, border-bottom 0.3s ease;
+}
+
+header.scrolled {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+
+/* ===================== HERO ===================== */
+.hero {
+  background: linear-gradient(to right, #fdfdfd, #f5f5f5); /* Softer gradient */
+  padding: 80px 0; /* Increased padding */
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  gap: 60px; /* Increased gap */
+  flex-wrap: wrap;
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.hero-text h1 {
+  font-size: 44px; /* Larger heading */
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.hero-text .subtitle {
+  font-weight: 600;
+  color: #444;
+  font-size: 18px; /* Slightly larger subtitle */
+}
+
+.hero-text .tagline {
+  margin: 20px 0 30px; /* Adjusted margins */
+  color: #666; /* Softer tagline color */
+  font-size: 17px;
+}
+
+.hero-buttons a {
+  margin-right: 20px; /* Increased spacing between buttons */
+}
+
+.hero-image {
+  flex: 1;
+  text-align: center;
+}
+
+.hero-image img {
+  max-width: 500px;
+  border-radius: 12px; /* Slightly more rounded corners */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15); /* Softer shadow */
+}
+
+/* ===================== ABOUT ===================== */
+.about {
+  background: #fff;
+  padding: 80px 0; /* Increased padding */
+}
+
+.about-flex {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px; /* Increased gap */
+  flex-wrap: wrap;
+  align-items: flex-start; /* Added to align items to the top */
+}
+
+.about-box {
+  background: #fefefe; /* Lighter background */
+  padding: 30px; /* Increased padding */
+  border-left: 5px solid #d4af37;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* Subtle shadow */
+  flex: 1; /* Allow it to grow */
+  min-width: 300px; /* Ensure it doesn't shrink too much */
+}
+
+.about-box p {
+  margin-bottom: 8px;
+  color: #555;
+}
+
+/* ===================== EXPERTISE ===================== */
+.expertise {
+  background: #1a2b40; /* Slightly darker blue */
+  color: #fff;
+  padding: 80px 0; /* Increased padding */
+}
+
+.expertise h2 {
+  text-align: center;
+  margin-bottom: 50px; /* Increased margin */
+  font-size: 36px; /* Larger heading */
+  color: #fff;
+}
+
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); /* Adjusted minmax */
+  gap: 30px; /* Increased gap */
+}
+
+.expertise-card {
+  background: #233a52; /* Darker card background */
+  padding: 35px; /* Increased padding */
+  border-radius: 8px; /* More rounded corners */
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Subtle shadow */
+  font-size: 18px; /* Larger text */
+  font-weight: 500;
+}
+
+.expertise-card:hover {
+  transform: translateY(-8px); /* More pronounced lift */
+  background: #2c4766; /* Lighter on hover */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* Stronger shadow on hover */
+}
+
+.expertise-card span {
+  display: block;
+  margin-top: 10px; /* Increased margin */
+  font-size: 15px; /* Slightly larger sub-text */
+  color: #d4af37;
+  font-weight: 400;
+}
+
+/* ===================== CERTIFICATES ===================== */
+.certificates {
+  background: #f8f9fa;
+  padding: 80px 0;
+}
+
+.certificates h2 {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 36px;
+  color: #222;
+}
+
+.certificate-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.certificate-card {
+  background: #fff;
+  padding: 35px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+  border-top: 5px solid #d4af37;
+  text-align: center;
+  transition: transform 0.3s ease;
+  position: relative; /* For badge positioning if needed */
+}
+
+.certificate-card:hover {
+  transform: translateY(-5px);
+}
+
+.certificate-card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #1a2b40;
+}
+
+.certificate-card .cert-title {
+  color: #d4af37;
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.certificate-card p {
+  margin-bottom: 8px;
+  color: #555;
+  font-size: 15px;
+}
+
+/* Verification Badges */
+.govt-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f7ff;
+  border: 1px solid #cce5ff;
+  border-radius: 50px;
+  padding: 6px 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.govt-badge svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.govt-badge .ashoka-chakra {
+  fill: none;
+  stroke: #000080;
+  stroke-width: 1.5;
+  width: 22px;
+  height: 22px;
+}
+
+.govt-badge .verified-tick {
+  fill: #1da1f2;
+}
+
+.govt-badge span {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0056b3;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.xero-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #e6fffa;
+  border: 1px solid #b2f5ea;
+  border-radius: 50px;
+  padding: 5px 12px;
+  margin-bottom: 20px;
+  color: #2c7a7b;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ===================== CONTACT ===================== */
+.contact {
+  background: #fff;
+  padding: 80px 0; /* Increased padding */
+}
+
+.contact-flex {
+  display: flex;
+  gap: 50px; /* Increased gap */
+  flex-wrap: wrap;
+}
+
+.contact-form {
+  flex: 1;
+  min-width: 300px;
+}
+
+.contact-form h2 {
+  font-size: 36px; /* Larger heading */
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 14px; /* Increased padding */
+  margin-bottom: 18px; /* Increased margin */
+  border: 1px solid #ddd; /* Lighter border */
+  border-radius: 5px; /* More rounded corners */
+  font-size: 16px; /* Consistent font size */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #d4af37; /* Gold border on focus */
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2); /* Subtle glow */
+}
+
+.contact-info {
+  flex: 1;
+  background: #fefefe; /* Lighter background */
+  padding: 30px; /* Increased padding */
+  border-left: 5px solid #d4af37;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* Subtle shadow */
+  min-width: 300px;
+}
+
+.contact-info h3 {
+  font-size: 24px; /* Larger heading */
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.contact-info p {
+  margin-bottom: 12px; /* Spacing for contact details */
+  color: #555;
+  font-size: 16px;
+}
+
+/* ===================== FOOTER ===================== */
+footer {
+  background: #1a2b40; /* Consistent dark background */
+  color: #bbb; /* Lighter text */
+  text-align: center;
+  padding: 25px 0; /* Increased padding */
+  font-size: 15px;
+}
+
+/* ===================== RESPONSIVE ===================== */
+
+/* ============================
+   LARGE LAPTOPS (≤1200px)
+============================ */
+@media (max-width: 1200px) {
+  .container {
+    width: 92%;
+  }
+
+  .hero-text h1 {
+    font-size: 38px; /* Adjusted for smaller screens */
+  }
+
+  .expertise h2, .contact-form h2 {
+    font-size: 32px;
+  }
+}
+
+/* ============================
+   TABLETS (≤992px)
+============================ */
+@media (max-width: 992px) {
+
+  /* NAVBAR */
+  nav {
+    display: none;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 60px 0; /* Adjusted padding */
+  }
+
+  .hero-content {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .hero-text h1 {
+    font-size: 32px;
+  }
+
+  .hero-text .subtitle {
+    font-size: 16px;
+  }
+
+  .hero-text .tagline {
+    font-size: 16px;
+    margin: 15px 0 25px;
+  }
+
+  .hero-image img {
+    max-width: 320px; /* Adjusted image size */
+  }
+
+  .hero-buttons a {
+    margin: 8px 10px; /* Adjusted button spacing */
+  }
+
+  /* ABOUT */
+  .about {
+    padding: 60px 0;
+  }
+  .about-flex {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  /* EXPERTISE */
+  .expertise {
+    padding: 60px 0;
+  }
+  .expertise h2 {
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+  .expertise-card {
+    padding: 30px;
+    font-size: 17px;
+  }
+
+  /* CONTACT */
+  .contact {
+    padding: 60px 0;
+  }
+  .contact-flex {
+    flex-direction: column;
+    gap: 30px;
+  }
+  .contact-form h2 {
+    font-size: 28px;
+  }
+  .contact-info h3 {
+    font-size: 22px;
+  }
+}
+
+/* ============================
+   MOBILE (≤768px)
+============================ */
+@media (max-width: 768px) {
+
+  /* GLOBAL */
+  body {
+    font-size: 15px;
+  }
+
+  h1, h2, h3 {
+    margin-bottom: 10px;
+  }
+
+  /* HEADER */
+  .logo {
+    font-size: 20px;
+  }
+
+  /* HERO */
+  .hero {
+    padding: 40px 0;
+  }
+
+  .hero-text h1 {
+    font-size: 28px;
+  }
+
+  .hero-text .subtitle {
+    font-size: 15px;
+  }
+
+  .hero-image img {
+    max-width: 280px;
+  }
+
+  /* EXPERTISE */
+  .expertise {
+    padding: 40px 0;
+  }
+
+  .expertise h2 {
+    font-size: 26px;
+    margin-bottom: 30px;
+  }
+
+  .expertise-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .expertise-card {
+    font-size: 16px;
+    padding: 25px;
+  }
+
+  /* CONTACT FORM */
+  .contact {
+    padding: 40px 0;
+  }
+  .contact-form h2 {
+    font-size: 26px;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 15px;
+    padding: 12px;
+    margin-bottom: 15px;
+  }
+
+  .contact-info h3 {
+    font-size: 20px;
+  }
+
+  iframe {
+    height: 250px; /* Adjusted map height */
+  }
+}
+
+/* ============================
+   SMALL MOBILES (≤480px)
+============================ */
+@media (max-width: 480px) {
+
+  /* HERO */
+  .hero-text h1 {
+    font-size: 24px;
+  }
+
+  .hero-text .tagline {
+    font-size: 15px;
+  }
+
+  /* BUTTONS */
+  .btn {
+    padding: 10px 18px;
+    font-size: 14px;
+  }
+
+  /* WHATSAPP BUTTON */
+  .whatsapp-float {
+    width: 55px; /* Slightly larger */
+    height: 55px;
+    bottom: 20px; /* Closer to bottom */
+    right: 20px; /* Closer to right */
+  }
+
+  .whatsapp-float svg {
+    width: 26px; /* Slightly larger icon */
+    height: 26px;
+  }
+
+  /* FOOTER */
+  footer p {
+    font-size: 14px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header>
+  <div class="container navbar">
+    <div class="logo"><span>K</span>ANABAR CONSULTANCY</div>
+    <div class="menu-toggle" id="menuToggle">☰</div>
+
+<nav id="navMenu">
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#services">Services</a>
+  <a href="#contact" class="btn btn-primary">Let's Connect</a>
+</nav>
+
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero fade-in" id="home">
+  <div class="container hero-content">
+    <div class="hero-text">
+      <h1>Adv. Rakshit S. Kanabar</h1>
+      <p class="subtitle">C.A. (Final), L.L.B., B.Com</p>
+      <p class="tagline">Your Partner for Financial & Legal Excellence</p>
+      <div class="hero-buttons">
+        <a href="#services" class="btn btn-primary">Explore Services</a>
+        <a href="#contact" class="btn btn-outline">Schedule Consultation</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      
+      <img src=".\images\photo.jpeg" loading="lazy" decoding="async" alt="">
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section class="about fade-in" id="about">
+  <div class="container about-flex">
+    <div>
+      <h2>About Me</h2>
+      <p>
+        Founder of Kanabar Consultancy, established in 2022, providing
+        trusted taxation, auditing, and legal compliance solutions with
+        accuracy, integrity, and excellence. With a deep understanding of
+        both financial and legal landscapes, Adv. Rakshit S. Kanabar is
+        dedicated to guiding clients through complex regulatory environments.
+        Our mission is to empower businesses and individuals with strategic
+        advice and robust support, ensuring compliance, optimizing financial
+        health, and fostering sustainable growth. We pride ourselves on
+        building lasting relationships based on trust, transparency, and a
+        client-centric approach.
+      </p>
+    </div>
+    <div class="about-box">
+      <p><strong>Qualification:</strong> C.A. (Final), L.L.B., B.Com</p>
+      <p><strong>Specialisation:</strong> Taxation, Audit, Compliance</p>
+      <p><strong>Experience:</strong> Over 7 years in financial and legal advisory</p>
+      <p><strong>Approach:</strong> Client-centric, ethical, and results-driven</p>
+      <p><strong>Mission:</strong> Empowering clients with strategic financial and legal solutions</p>
+      <p><strong>Values:</strong> Integrity, Excellence, Transparency</p>
+      <p><strong>Languages:</strong> English, Hindi, Gujarati</p>
+      <p><strong>Memberships:</strong> Bar Council of Gujarat, ICAI</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EXPERTISE ===================== -->
+<section class="expertise fade-in" id="services">
+  <div class="container">
+    <h2>Our Expertise</h2>
+    <div class="expertise-grid">
+      <div class="expertise-card">Taxation<span>Income Tax & GST</span></div>
+      <div class="expertise-card">Audit<span>Statutory & Internal</span></div>
+      <div class="expertise-card">GST Services<span>Returns & Filing</span></div>
+      <div class="expertise-card">RERA<span>Registration & Advisory</span></div>
+      <div class="expertise-card">Litigation<span>Appeals & Tribunals</span></div>
+      <div class="expertise-card">Investments<span>Mutual Funds</span></div>
+      <div class="expertise-card">Business Advisory<span>Strategy & Growth</span></div>
+      <div class="expertise-card">Company Law<span>Incorporation & Compliance</span></div>
+      <div class="expertise-card">Intellectual Property<span>Trademark & Copyright</span></div>
+      <div class="expertise-card">Legal Drafting<span>Agreements & Contracts</span></div>
+      <div class="expertise-card">LLP Compliances<span>Regulatory Filings</span></div>
+      <div class="expertise-card">Due Diligence<span>Financial & Legal</span></div>
+      <div class="expertise-card">Startup Consultancy<span>Formation & Funding</span></div>
+      <div class="expertise-card">Forensic Audit<span>Fraud Investigation</span></div>
+      <div class="expertise-card">International Taxation<span>Cross-border Compliance</span></div>
+      <div class="expertise-card">Wealth Management<span>Planning & Advisory</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CERTIFICATES ===================== -->
+<section class="certificates fade-in" id="certificates">
+  <div class="container">
+    <h2>Experience & Certifications</h2>
+    <div class="certificate-grid">
+      <!-- Certificate 1 -->
+              <div class="certificate-card">
+                <div class="govt-badge">
+                   <!-- Ashoka Chakra (Simplified Symbol of India) -->
+                   <svg class="ashoka-chakra" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="9" stroke-width="1.5" />
+                      <circle cx="12" cy="12" r="1.5" fill="#000080" stroke="none"/>
+                      <g stroke="#000080" stroke-width="0.8">
+                        <line x1="12" y1="3" x2="12" y2="21" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="5.64" y1="5.64" x2="18.36" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="5.64" y2="18.36" />
+                        <line x1="8.5" y1="3.5" x2="15.5" y2="20.5" />
+                        <line x1="15.5" y1="3.5" x2="8.5" y2="20.5" />
+                        <line x1="3.5" y1="8.5" x2="20.5" y2="15.5" />
+                        <line x1="20.5" y1="8.5" x2="3.5" y2="15.5" />
+                      </g>
+                   </svg>
+                   <!-- Blue Tick -->
+                   <svg class="verified-tick" viewBox="0 0 24 24">
+                      <path d="M22.5 12.5c0-1.58-.875-2.95-2.148-3.6.154-.435.238-.905.238-1.4 0-2.21-1.71-3.998-3.818-3.998-.47 0-.92.084-1.336.25C14.818 2.415 13.51 1.5 12 1.5s-2.816.917-3.437 2.25c-.415-.165-.866-.25-1.336-.25-2.11 0-3.818 1.79-3.818 4 0 .495.083.965.238 1.4-1.272.65-2.147 2.02-2.147 3.6 0 1.457.748 2.73 1.864 3.494C2.89 16.753 2.5 17.55 2.5 18.43c0 2.24 1.815 4.07 4.07 4.07.495 0 .97-.083 1.415-.24.64 1.39 2.04 2.37 3.65 2.37s3.01-.98 3.65-2.37c.445.157.92.24 1.415.24 2.255 0 4.07-1.83 4.07-4.07 0-.88-.39-1.677-.864-2.435 1.116-.765 1.864-2.037 1.864-3.495zM10.12 17.56l-4.06-4.06 1.77-1.77 2.29 2.29 6.29-6.29 1.77 1.77-8.06 8.06z"/>
+                   </svg>
+                   <span>Govt. of India Recognized</span>
+                </div>
+                <h3>NiSM Series V-A</h3>
+                <p class="cert-title">Mutual Fund Distributors Certification</p>
+                <p><strong>Issued By:</strong> National Institute of Securities Markets (NISM)</p>
+                <p><strong>Registration No:</strong> NISM-202100165156</p>
+              </div>
+              <!-- Certificate 2 -->
+              <div class="certificate-card">
+                <div class="xero-badge">
+                   <svg viewBox="0 0 24 24" style="width:14px;height:14px;margin-right:5px;fill:currentColor;">
+                     <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                   </svg>
+                   <span>VERIFIED</span>
+                </div>
+                <h3>Xero Advisor Certified</h3>
+                <p class="cert-title">Cloud Accounting Specialist</p>
+                <p><strong>Issued By:</strong> Xero</p>
+                <p><strong>Awarded To:</strong> Rakshit Kanabar</p>
+              </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="contact fade-in" id="contact">
+  <div class="container contact-flex">
+    <form class="contact-form" id="contactForm">
+    <h2>Get In Touch</h2>
+
+  <input type="text" name="name" placeholder="Full Name" required>
+  <input type="email" name="email" placeholder="Email Address" required>
+  <input type="tel" name="phone" placeholder="Phone Number" required>
+  <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+
+  <button type="submit" class="btn btn-primary">Send Message</button>
+
+  <p id="formStatus" style="margin-top:10px;"></p>
+  </form>
+
+
+    <div class="contact-info">
+      <h3>Contact Details</h3>
+      <p>📍 KANABAR CONSULTANCY, Office No. 1029, 10th Floor, The Spire 2, Sheetal Park, Shastri Nagar, 150 Feet Ring Rd, Rajkot, Gujarat 360007</p>
+      <p>📞 +91 95 123 321 95</p>
+      <p>📧 adv.kanabar@gmail.com</p>
+    
+  
+
+<!-- ===================== MAP ===================== -->
+  <div style="margin-top:20px; overflow:hidden; height:300px; border-radius:8px;">
+  <iframe
+    src="https://www.google.com/maps?q=The%20Spire-2%20Rajkot&output=embed"
+    width="100%"
+    height="600"
+    style="border:0; margin-top: -150px;"
+    loading="lazy">
+  </iframe>
+</div>
+</div>
+</div>
+
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <p>© 2024 Kanabar Consultancy. All Rights Reserved.</p>
+</footer>
+
+<!-- EmailJS: load SDK and send form to configured email -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  // Replace the placeholders below with your EmailJS values
+  const EMAILJS_SERVICE_ID = 'service_drkmkfk';
+  const EMAILJS_TEMPLATE_ID = 'template_b8isq4h';
+  const EMAILJS_PUBLIC_KEY = 'Irxv4QKr6NB4D-JOa';
+
+  (function(){
+    if (window.emailjs) {
+      emailjs.init(EMAILJS_PUBLIC_KEY);
+    }
+  })();
+
+  const contactForm = document.getElementById('contactForm');
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const status = document.getElementById('formStatus');
+    status.style.color = '#555';
+    status.innerText = 'Sending message...';
+
+    // Sends the whole form. The template should reference the form fields
+    // e.g., {{name}}, {{email}}, {{phone}}, {{message}}, and optional {{to_email}}
+    emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, this, EMAILJS_PUBLIC_KEY)
+      .then(() => {
+        status.style.color = 'green';
+        status.innerText = '✅ Message sent successfully!';
+        this.reset();
+      }, (err) => {
+        console.error('EmailJS error:', err);
+        status.style.color = 'red';
+        status.innerText = '❌ Failed to send message. Try again.';
+      });
+  });
+</script>
+
+
+<!-- ===================== whatsapp icon ===================== -->
+
+<a href="https://wa.me/919512332195?text=Hello%2C%20I%20would%20like%20to%20schedule%20a%20consultation%20with%20Kanabar%20Consultancy."
+  target="_blank"
+  class="whatsapp-float"
+  aria-label="Chat on WhatsApp">
+
+  <svg viewBox="0 0 32 32" width="28" height="28" fill="white">
+    <path d="M16.002 3C9.383 3 4 8.383 4 15.002c0 2.646.867 5.096 2.336 7.08L4 29l7.176-2.293A11.93 11.93 0 0 0 16.002 27c6.617 0 12-5.383 12-11.998C28.002 8.383 22.619 3 16.002 3zm0 21.748a9.67 9.67 0 0 1-4.93-1.35l-.353-.21-4.258 1.362 1.39-4.14-.23-.375a9.62 9.62 0 1 1 8.38 4.713zm5.3-7.08c-.29-.145-1.71-.845-1.974-.94-.264-.097-.456-.145-.648.145-.19.29-.745.94-.914 1.13-.168.193-.337.217-.627.072-.29-.145-1.224-.45-2.33-1.43-.86-.765-1.44-1.71-1.61-2-.168-.29-.018-.445.127-.59.13-.128.29-.337.435-.505.145-.168.193-.29.29-.483.096-.193.048-.362-.024-.507-.072-.145-.648-1.56-.888-2.136-.234-.563-.47-.487-.648-.497h-.552c-.193 0-.507.072-.772.362-.264.29-1.012.99-1.012 2.414s1.036 2.802 1.18 2.994c.145.193 2.04 3.117 4.94 4.37.69.298 1.23.476 1.65.61.693.22 1.323.19 1.82.115.555-.082 1.71-.7 1.95-1.375.24-.675.24-1.253.168-1.375-.072-.12-.264-.193-.552-.338z"/>
+  </svg>
+
+</a>
+
+<style>
+.whatsapp-float {
+  position: fixed;
+  bottom: 75px;
+  right: 22px;
+  width: 58px;
+  height: 58px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  z-index: 999;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.08);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+</style>
+
+<script>
+document.getElementById("menuToggle").onclick = () => {
+  document.getElementById("navMenu").classList.toggle("show");
+};
+</script>
+
+<script>
+window.addEventListener("scroll", () => {
+  document.querySelector("header")
+    .classList.toggle("scrolled", window.scrollY > 10);
+});
+</script>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
+</script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+</body>
+</html>
